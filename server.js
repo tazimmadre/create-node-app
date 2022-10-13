@@ -9,9 +9,8 @@ import { connect } from "./util/db.js";
 import { SECRETS } from "./util/config.js";
 import { upload } from './util/s3-spaces';
 import { forgotPassword } from "./resources/user/user.controllers.js"
-import { signup, signin, protect, adminSignin, employerSignUp, adminProtect } from "./util/auth.js";
+import { signup, signin, protect, adminSignin, adminSignUp, adminProtect } from "./util/auth.js";
 import { User } from "./resources/user/user.model.js";
-import EmployerRouter from "./resources/user/employer_router.js";
 import UserRouter from "./resources/user/user.router.js";
 
 config();
@@ -60,11 +59,10 @@ app.post("/upload", upload.single('file'), (req, res) => res.send({ imageURL: re
 app.post("/signup", userModel, signup);
 app.post("/signin", userModel, signin);
 app.put("/changePassword", forgotPassword)
-// app.post("/admin-signup", userModel, employerSignUp);
+// app.post("/admin-signup", userModel, adminSignUp);
 // app.post("/admin-signin", userModel, adminSignin);
 
 app.use("/api/user", userModel, protect, UserRouter);
-app.use('/api/employer', userModel, adminProtect, EmployerRouter);
 
 export const start = async () => {
   try {

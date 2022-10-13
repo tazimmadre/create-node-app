@@ -141,7 +141,7 @@ const adminSignin = async (req, res) => {
   }
 }
 
-const employerSignUp = async (req, res, next) => {
+const adminSignUp = async (req, res, next) => {
   const Model = req.model;
   if (
     !req.body.email ||
@@ -170,4 +170,4 @@ const employerSignUp = async (req, res, next) => {
   }
 };
 
-export { signup, signin, protect, adminSignin, adminProtect, employerSignUp };
+export { signup, signin, protect, adminSignin, adminProtect, adminSignUp };
