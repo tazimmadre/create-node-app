@@ -53,16 +53,18 @@ app.get("/", (req, res) => {
   res.json("Server is Running");
 });
 
+//util
+app.post("/upload", upload.single('file'), (req, res) => res.send({ imageURL: req.file.path }));
 
 //Auth Routes
-app.post("/upload", upload.single('file'), (req, res) => res.send({ imageURL: req.file.path }));
 app.post("/signup", userModel, signup);
 app.post("/signin", userModel, signin);
+
+app.use("/api/user", userModel, protect, UserRouter);
 app.put("/changePassword", forgotPassword)
 // app.post("/admin-signup", userModel, adminSignUp);
 // app.post("/admin-signin", userModel, adminSignin);
 
-app.use("/api/user", userModel, protect, UserRouter);
 
 export const start = async () => {
   try {

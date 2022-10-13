@@ -94,7 +94,7 @@ const changeUserPassword = async (req, res) => {
   } catch (e) {
     console.log(e.message);
     res.status(500).json({
-      message: "Error fetching user object",
+      message: "Error Occurred while changing password.",
       error: e.message,
     });
   }
