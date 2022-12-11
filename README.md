@@ -17,7 +17,7 @@ npx create-node-app <project-name>
 Or
 
 ```bash
-npm init nodejs-express-app <project-name>
+npm init create-node-app <project-name>
 ```
 
 ## Manual Installation
