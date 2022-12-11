@@ -1,5 +1,5 @@
 {
-  "name": "create-node-app",
+  "name": "@tazim/create-node-app",
   "version": "1.0.0",
   "description": "REST API starter project with authentication, upload and basic APIS required to start with a backend project.",
   "main": "index.js",
