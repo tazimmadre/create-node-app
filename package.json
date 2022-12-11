@@ -1,6 +1,6 @@
 {
   "name": "node-app-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": "bin/createNodeApp.js",
   "repository": "https://github.com/tazimmadre/create-node-app.git",
   "description": "REST API starter project with authentication, upload and basic APIS required to start with a backend project.",
