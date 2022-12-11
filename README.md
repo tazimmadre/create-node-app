@@ -11,13 +11,13 @@ By running a single command, you will get a production-ready Node.js app install
 To create a project, simply run:
 
 ```bash
-npx create-node-app <project-name>
+npx node-app-generator <project-name>
 ```
 
 Or
 
 ```bash
-npm init create-node-app <project-name>
+npm init node-app-generator <project-name>
 ```
 
 ## Manual Installation
