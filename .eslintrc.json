@@ -4,7 +4,7 @@
         "jest": true
     },
     "parserOptions": {
-        "ecmaVersion": "latest",
+        "ecmaVersion": 8,
         "sourceType": "module"
     },
     "rules": {
