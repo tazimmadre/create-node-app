@@ -3,9 +3,10 @@ import { promisify } from 'util';
 import { join } from 'path';
 import { mkdirSync, copyFileSync, unlinkSync, rmdirSync } from 'fs';
 import { execSync } from 'child_process';
+import childprocess from 'child_process'
 
 // Utility functions
-const exec = promisify(require('child_process').exec);
+const exec = promisify(childprocess.exec);
 async function runCmd (command) {
     try {
         const { stdout, stderr } = await exec(command);
