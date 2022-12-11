@@ -1,6 +1,8 @@
 {
   "name": "@tazim/create-node-app",
   "version": "1.0.0",
+  "bin": "bin/createNodeApp.js",
+  "repository": "https://github.com/tazimmadre/create-node-app.git",
   "description": "REST API starter project with authentication, upload and basic APIS required to start with a backend project.",
   "main": "index.js",
   "type": "module",
