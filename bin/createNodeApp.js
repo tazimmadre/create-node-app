@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-const util = require('util');
-const path = require('path');
-const fs = require('fs');
-const { execSync } = require('child_process');
+import { promisify } from 'util';
+import { join } from 'path';
+import { mkdirSync, copyFileSync, unlinkSync, rmdirSync } from 'fs';
+import { execSync } from 'child_process';
 
 // Utility functions
-const exec = util.promisify(require('child_process').exec);
+const exec = promisify(require('child_process').exec);
 async function runCmd (command) {
     try {
         const { stdout, stderr } = await exec(command);
@@ -40,12 +40,12 @@ if (process.argv.length < 3) {
 // Define constants
 const ownPath = process.cwd();
 const folderName = process.argv[2];
-const appPath = path.join(ownPath, folderName);
+const appPath = join(ownPath, folderName);
 const repo = 'https://github.com/tazimmadre/create-node-app.git';
 
 // Check if directory already exists
 try {
-    fs.mkdirSync(appPath);
+    mkdirSync(appPath);
 } catch (err) {
     if (err.code === 'EEXIST') {
         console.log('Directory already exists. Please choose another name for the project.');
@@ -78,19 +78,19 @@ async function setup () {
         console.log();
 
         // Copy envornment variables
-        fs.copyFileSync(path.join(appPath, '.env.example'), path.join(appPath, '.env'));
+        copyFileSync(join(appPath, '.env.example'), join(appPath, '.env'));
         console.log('Environment files copied.');
 
         // Delete .git folder
         await runCmd('npx rimraf ./.git');
 
         // Remove extra files
-        fs.unlinkSync(path.join(appPath, 'CODE_OF_CONDUCT.md'));
-        fs.unlinkSync(path.join(appPath, 'CONTRIBUTING.md'));
-        fs.unlinkSync(path.join(appPath, 'bin', 'createNodeApp.js'));
-        fs.rmdirSync(path.join(appPath, 'bin'));
+        unlinkSync(join(appPath, 'CODE_OF_CONDUCT.md'));
+        unlinkSync(join(appPath, 'CONTRIBUTING.md'));
+        unlinkSync(join(appPath, 'bin', 'createNodeApp.js'));
+        rmdirSync(join(appPath, 'bin'));
         if (!useYarn) {
-            fs.unlinkSync(path.join(appPath, 'yarn.lock'));
+            unlinkSync(join(appPath, 'yarn.lock'));
         }
 
         console.log('Installation is now complete!');

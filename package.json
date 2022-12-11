@@ -1,5 +1,5 @@
 {
-  "name": "@tazim/create-node-app",
+  "name": "node-app-generator",
   "version": "1.0.0",
   "bin": "bin/createNodeApp.js",
   "repository": "https://github.com/tazimmadre/create-node-app.git",
