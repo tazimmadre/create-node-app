@@ -27,7 +27,7 @@ If you would still prefer to do the installation manually, follow these steps:
 Clone the repo:
 
 ```bash
-git clone --depth 1 https://github.com/tazimmadre/user-basic-auth.git
+git clone --depth 1 https://github.com/tazimmadre/create-node-app.git
 cd node-express-boilerplate
 npx rimraf ./.git
 ```
