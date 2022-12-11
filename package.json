@@ -7,13 +7,16 @@
   "scripts": {
     "start": "node --es-module-specifier-resolution=node index",
     "dev": "nodemon --es-module-specifier-resolution=node",
-    "format": "prettier --write \"**/*.(js)\"",
+    "format": "eslint . --fix ",
     "deploy": "npm run format && git push && git push heroku master",
     "pc": "git add . && git commit -am \"heroku\" && git push heroku master"
   },
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "keywords": [],
   "author": "Tazim Madre",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@sendgrid/mail": "^7.4.6",
     "aws-sdk": "^2.910.0",
@@ -34,6 +37,7 @@
     "multer-storage-cloudinary": "^4.0.0"
   },
   "devDependencies": {
+    "eslint": "^8.29.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0"
   }

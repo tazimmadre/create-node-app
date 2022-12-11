@@ -7,13 +7,14 @@ import cors from "cors";
 import expressListRoutes from "express-list-routes";
 import { connect } from "./util/db.js";
 import { SECRETS } from "./util/config.js";
-import { upload } from './util/s3-spaces';
-import { forgotPassword } from "./resources/user/user.controllers.js"
+import { upload } from './util/upload';
+import { forgotPassword } from "./src/controllers/user.controllers.js"
 import { signup, signin, protect, adminSignin, adminSignUp, adminProtect } from "./util/auth.js";
-import { User } from "./resources/user/user.model.js";
-import UserRouter from "./resources/user/user.router.js";
+import { User } from "./src/models/user.model.js";
+import UserRouter from "./src/routes/user.router.js";
 
 config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -29,7 +30,8 @@ const limiter = rateLimit({
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-})
+});
+
 // Apply the rate limiting middleware to all requests
 app.use(limiter)
 
@@ -53,17 +55,22 @@ app.get("/", (req, res) => {
   res.json("Server is Running");
 });
 
-//util
+//util single file upload API
 app.post("/upload", upload.single('file'), (req, res) => res.send({ imageURL: req.file.path }));
 
-//Auth Routes
-app.post("/signup", userModel, signup);
-app.post("/signin", userModel, signin);
+//Auth Routes for user
+app.post("/register", userModel, signup);
+app.post("/login", userModel, signin);
 
+//user crud API'S
 app.use("/api/user", userModel, protect, UserRouter);
+
+//change Password without login
 app.put("/changePassword", forgotPassword)
-// app.post("/admin-signup", userModel, adminSignUp);
-// app.post("/admin-signin", userModel, adminSignin);
+
+//admin auth 
+app.post("/admin-register", userModel, adminSignUp);
+app.post("/admin-login", userModel, adminSignin);
 
 
 export const start = async () => {

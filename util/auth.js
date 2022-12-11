@@ -65,7 +65,7 @@ const signin = async (req, res) => {
   }
 };
 
-const protect = async (req, res, next) => {
+const requiresLogin = async (req, res, next) => {
   const Model = req.model;
   if (!req.headers.authorization) {
     return res.status(401).send({ message: "User not authorized" });
@@ -84,11 +84,11 @@ const protect = async (req, res, next) => {
     next();
   } catch (e) {
     console.log(e);
-    return res.status(401).end();
+    return res.status(401).send({ message: "Not Authorized" });
   }
 };
 
-const adminProtect = async (req, res, next) => {
+const requiresAdminLogin = async (req, res, next) => {
   const Model = req.model;
   if (!req.headers.authorization) {
     return res.status(401).send({ message: "User not authorized" });
@@ -99,8 +99,7 @@ const adminProtect = async (req, res, next) => {
   }
   try {
     const payload = await verifyToken(token);
-    console.log(payload);
-    const user = await Model.findById(payload.id)
+    const user = await Model.findOne({ _id: payload.id, userType: 'admin' })
       .select("-password")
       .lean()
       .exec();
@@ -158,8 +157,7 @@ const adminSignUp = async (req, res, next) => {
       .send({ status: "failed", message: "Email is already in use" });
   else {
     try {
-      const user = await Model.create({ ...req.body, approved: true });
-      //  send_email("Pop_Employer_Credentials", req.body);
+      const user = await Model.create({ ...req.body, approved: true, userType: 'admin' });
       return res.status(201).send({ status: "ok", data: user });
     } catch (e) {
       console.log(e);
@@ -170,4 +168,4 @@ const adminSignUp = async (req, res, next) => {
   }
 };
 
-export { signup, signin, protect, adminSignin, adminProtect, adminSignUp };
+export { signup, signin, requiresLogin as protect, adminSignin, requiresAdminLogin as adminProtect, adminSignUp };

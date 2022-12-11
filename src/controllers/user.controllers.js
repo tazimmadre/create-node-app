@@ -1,5 +1,4 @@
-import Mongoose from "mongoose";
-import { User } from "./user.model.js";
+import { User } from "../models/user.model.js";
 import bcrypt from "bcrypt";
 
 const getUserProfile = (req, res) => {
@@ -99,6 +98,7 @@ const changeUserPassword = async (req, res) => {
     });
   }
 };
+
 const getUsers = async (req, res) => {
   let { page, limit } = req.query;
   page = page * 1;
@@ -119,8 +119,8 @@ const getUsers = async (req, res) => {
     console.log(e.message);
     res.status(500).json({ message: "Error getting details" });
   }
-
 };
+
 const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -142,6 +142,7 @@ const getUser = async (req, res) => {
     res.status(500).json({ message: "Error getting details" });
   }
 };
+
 const forgotPassword = async (req, res) => {
   let password;
   const user = await User.findOne({ email: req.body.email });
@@ -154,10 +155,9 @@ const forgotPassword = async (req, res) => {
     const hash = await bcrypt.hash(password, 8);
     const updateQuery = req.body
     try {
-      const result = await User.findOneAndUpdate(updateQuery, { password: hash }, { new: true })
-      console.log(result)
-      send_email("Pop_GeneratePassword", user, password);
-      res.status(200).send({ status: "success", message: "New password generated successfully.Please check ur email." })
+      await User.findOneAndUpdate(updateQuery, { password: hash }, { new: true })
+      //send email or sms to send new password subscribe to a service like sendgrid or AWS SES
+      res.status(200).send({ status: "success", message: "New password generated successfully. Please check ur email." })
     }
     catch (error) {
       return res.status(500).json({ status: "failed", message: "error.message" })

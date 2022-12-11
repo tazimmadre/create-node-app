@@ -1,0 +1,16 @@
+{
+    "env": {
+        "node": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-console": "off",
+        "func-names": "off",
+        "no-underscore-dangle": "off",
+        "consistent-return": "off"
+    }
+}
