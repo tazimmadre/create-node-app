@@ -168,4 +168,4 @@ const adminSignUp = async (req, res, next) => {
   }
 };
 
-export { signup, signin, requiresLogin as protect, adminSignin, requiresAdminLogin as adminProtect, adminSignUp };
+export { signup, signin, requiresLogin, adminSignin, requiresAdminLogin, adminSignUp };

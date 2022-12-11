@@ -1,7 +1,7 @@
 {
-  "name": "stepforlocal",
+  "name": "create-node-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "REST API starter project with authentication, upload and basic APIS required to start with a backend project.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,12 +9,11 @@
     "dev": "nodemon --es-module-specifier-resolution=node",
     "format": "eslint . --fix ",
     "deploy": "npm run format && git push && git push heroku master",
-    "pc": "git add . && git commit -am \"heroku\" && git push heroku master"
+    "heroku": "git add . && git commit -am \"heroku\" && git push heroku master"
   },
   "engines": {
     "node": ">=12.0.0"
   },
-  "keywords": [],
   "author": "Tazim Madre",
   "license": "MIT",
   "dependencies": {
@@ -40,5 +39,42 @@
     "eslint": "^8.29.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0"
-  }
+  },
+  "keywords": [
+    "node",
+    "node.js",
+    "boilerplate",
+    "generator",
+    "express",
+    "rest",
+    "api",
+    "mongodb",
+    "mongoose",
+    "es6",
+    "es7",
+    "es8",
+    "es9",
+    "jest",
+    "travis",
+    "docker",
+    "passport",
+    "joi",
+    "eslint",
+    "prettier",
+    "react",
+    "createnodeapp",
+    "create-react-app",
+    "nodejs mongodb express",
+    "authentication",
+    "image-upload",
+    "cloudinary",
+    "AWS",
+    "S3",
+    "multer",
+    "upload",
+    "clean-code",
+    "javascript",
+    "js",
+    "es2022"
+  ]
 }

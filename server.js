@@ -9,7 +9,7 @@ import { connect } from "./util/db.js";
 import { SECRETS } from "./util/config.js";
 import { upload } from './util/upload';
 import { forgotPassword } from "./src/controllers/user.controllers.js"
-import { signup, signin, protect, adminSignin, adminSignUp, adminProtect } from "./util/auth.js";
+import { signup, signin, requiresLogin, adminSignin, adminSignUp, requiresAdminLogin } from "./util/auth.js";
 import { User } from "./src/models/user.model.js";
 import UserRouter from "./src/routes/user.router.js";
 
@@ -63,7 +63,7 @@ app.post("/register", userModel, signup);
 app.post("/login", userModel, signin);
 
 //user crud API'S
-app.use("/api/user", userModel, protect, UserRouter);
+app.use("/api/user", userModel, requiresLogin, UserRouter);
 
 //change Password without login
 app.put("/changePassword", forgotPassword)
