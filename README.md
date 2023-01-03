@@ -1,5 +1,6 @@
 # RESTful API Node Server Boilerplate / Starter Project
 
+![npm](https://img.shields.io/npm/dm/node-app-generator.svg)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 A boilerplate/starter project for quickly building RESTful APIs using Node.js, Express, and Mongoose.
